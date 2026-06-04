@@ -64,6 +64,32 @@
         <div class="card"><div class="icon-box" style="color:#FFD700; border-color:#FFD700">💻</div><h3>Code</h3><button class="open-btn">Open Tool →</button></div>
     </div>
 </div>
+    
+<div id="freelancer-tool" style="background:#1a1a2e; padding:30px; border-radius:15px; margin:20px; text-align:center;">
+    <h2 style="color:#ffcc00;">AI Freelancer Assistant</h2>
+    <p>اپنے کام کی تفصیل لکھیں، ہم آپ کو بہترین جواب بنا کر دیں گے:</p>
+    
+    <input type="text" id="jobTitle" placeholder="کام کا نام (مثال: Content Writing)" style="width:80%; padding:10px; margin:10px; border-radius:5px; border:none;">
+    <br>
+    <button onclick="generateProposal()" style="background:#ffcc00; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">پروپوزل بنائیں</button>
+    
+    <div id="resultArea" style="margin-top:20px; color:white; background:#0f0f1a; padding:15px; border-radius:10px; text-align:left; min-height:50px;">
+        جواب یہاں آئے گا...
+    </div>
+</div>
+
+<script>
+function generateProposal() {
+    let job = document.getElementById('jobTitle').value;
+    let result = document.getElementById('resultArea');
+    
+    if(job === "") {
+        result.innerHTML = "براہ کرم کام کا نام لکھیں!";
+    } else {
+        result.innerHTML = "Hi Client, I have great experience in " + job + ". I can provide high-quality work within your deadline. Let's discuss your project!";
+    }
+}
+</script>
 
 <script>
     const canvas = document.getElementById('sandCanvas');
