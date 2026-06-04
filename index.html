@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanaullah Workspace</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; color: white; min-height: 100vh; background: #0a0a0f; overflow-x: hidden; }
+        
+        #sandCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-weight: 800; font-size: 20px; color: #ffcc00; }
+        .nav-links { display: flex; gap: 20px; align-items: center; direction: rtl; }
+        .nav-links span { cursor: pointer; opacity: 0.8; font-size: 15px; }
+        .login-btn { border: 1px solid #ffcc00; padding: 6px 18px; border-radius: 25px; color: #ffcc00; }
+
+        .header-section { text-align: center; margin-top: 60px; direction: rtl; }
+        .center-title { display: flex; justify-content: center; gap: 10px; font-size: 55px; font-weight: 800; }
+        .workspace-yellow { color: #ffcc00; }
+        .sana-white { color: white; }
+        .sub-line { margin: 15px 0; font-size: 20px; color: #ccc; }
+        
+        .tools-title { text-align: center; margin-top: 50px; font-size: 24px; direction: rtl; }
+        
+        .cards-grid { display: flex; justify-content: center; gap: 20px; margin-top: 30px; direction: rtl; }
+        .card { background: #111; border: 1px solid #333; border-radius: 15px; padding: 25px; width: 260px; text-align: center; }
+        .icon-box { width: 50px; height: 50px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid; font-size: 24px; }
+        .open-btn { background: transparent; border: 1px solid #444; color: #ccc; padding: 8px 16px; border-radius: 20px; cursor: pointer; margin-top: 15px; }
+    </style>
+</head>
+<body>
+
+<canvas id="sandCanvas"></canvas>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">Sanaullah Workspace</div>
+        <div class="nav-links">
+            <span class="login-btn">لاگ ان / سائن اپ 👤</span>
+            <span>قینی</span>
+            <span>AI اسسٹنٹس</span>
+            <span>ٹولز</span>
+            <span>ہوم</span>
+        </div>
+    </div>
+
+    <div class="header-section">
+        <div class="center-title">
+            <span class="workspace-yellow">Workspace</span>
+            <span class="sana-white">Sanaullah</span>
+        </div>
+        <div class="sub-line">AI سے ہر مشکل کام کا آسان حل</div>
+    </div>
+
+    <div class="tools-title">ہمارے ٹولز</div>
+
+    <div class="cards-grid">
+        <div class="card"><div class="icon-box" style="color:#87CEFA; border-color:#87CEFA">🤖</div><h3>Freelance</h3><button class="open-btn">Open Tool →</button></div>
+        <div class="card"><div class="icon-box" style="color:#00CED1; border-color:#00CED1">📝</div><h3>Writer</h3><button class="open-btn">Open Tool →</button></div>
+        <div class="card"><div class="icon-box" style="color:#32CD32; border-color:#32CD32">📈</div><h3>SEO</h3><button class="open-btn">Open Tool →</button></div>
+        <div class="card"><div class="icon-box" style="color:#FFD700; border-color:#FFD700">💻</div><h3>Code</h3><button class="open-btn">Open Tool →</button></div>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('sandCanvas');
+    const ctx = canvas.getContext('2d');
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize(); window.addEventListener('resize', resize);
+    const particles = [];
+    for (let i = 0; i < 200; i++) { particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*2+1, speedX: (Math.random()-0.5)*0.3, speedY: (Math.random()-0.5)*0.3 }); }
+    function draw() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        ctx.fillStyle = "rgba(255, 204, 0, 0.3)";
+        particles.forEach(p => {
+            ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            p.x += p.speedX; p.y += p.speedY;
+            if(p.x<0 || p.x>canvas.width) p.speedX*=-1;
+            if(p.y<0 || p.y>canvas.height) p.speedY*=-1;
+        });
+        requestAnimationFrame(draw);
+    }
+    draw();
+</script>
+</body>
+</html>
