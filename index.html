@@ -366,6 +366,42 @@ footer h3 {
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script>
+function generateAIAnswer() {
+    let task = document.getElementById("taskType").value;
+    let topic = document.getElementById("userTopic").value;
+    let display = document.getElementById("aiResponse");
+
+    if (!topic) {
+        display.innerHTML = "براہ کرم کام کا نام لکھیں۔";
+        return;
+    }
+
+    let responses = {
+        upwork: `Hi Client, I have strong experience in ${topic}. I can provide high-quality work within your deadline. Let's discuss your project!`,
+        fiverr: `Are you looking for professional ${topic} services? I am here to provide top-notch results with 100% satisfaction.`,
+        cold: `Hello, I've been following your work in ${topic} and would love to help you automate your processes to save time.`,
+        interview: `In ${topic} interviews, focus on the problem you solved for the client. Be specific about your tools and results.`
+    };
+
+    let finalAnswer = responses[task];
+    
+    // جواب اور کاپی بٹن دکھائیں
+    display.innerHTML = `
+        <p style="color: #ffcc00; font-weight: bold;">AI کا جواب:</p>
+        <p>${finalAnswer}</p>
+        <button onclick="copyToClipboard('${finalAnswer}')" style="margin-top:10px; padding:5px 15px; cursor:pointer; background:#fff; color:black; border:none; border-radius:5px;">📋 کاپی کریں</button>
+    `;
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert("ٹیکسٹ کاپی ہو گیا!");
+    });
+}
+</script>
+
+    
+<script>
     // === گولڈن ریت + چمکتی بلبیں (پس منظر) ===
     const canvas = document.getElementById('sandCanvas');
     const ctx = canvas.getContext('2d');
