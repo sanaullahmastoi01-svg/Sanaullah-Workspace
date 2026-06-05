@@ -364,28 +364,44 @@ footer h3 {
     }
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<!-- Freelance Assistant Tool UI -->
 <div class="card" style="max-width: 800px; margin: 40px auto; text-align: right; direction: rtl;">
     <h2 style="color: #ffcc00; margin-bottom: 15px;">🤖 سمارٹ فری لانس اسسٹنٹ</h2>
-    <p>اپنا مقصد منتخب کریں اور پیشہ ورانہ جواب پائیں:</p>
     
     <select id="taskType" style="width: 100%; padding: 10px; margin: 10px 0; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
-        <option value="upwork">Upwork Proposal (پروپوزل)</option>
-        <option value="fiverr">Fiverr Gig Description (گگ ڈسکریشن)</option>
-        <option value="cold">Cold Email to Client (کلائنٹ کو ای میل)</option>
-        <option value="interview">Interview Questions (انٹرویو کے جوابات)</option>
+        <option value="upwork">Upwork Proposal</option>
+        <option value="fiverr">Fiverr Gig Description</option>
     </select>
 
-    <input type="text" id="userTopic" placeholder="کام کا نام (مثال: Google Sheets Automation)" style="width: 100%; padding: 10px; margin: 10px 0; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
+    <input type="text" id="userTopic" placeholder="کام کا نام لکھیں" style="width: 100%; padding: 10px; margin: 10px 0; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
     
-    <button class="open-btn" onclick="generateAIAnswer()" style="width: 100%; font-size: 16px;">AI سے پوچھیں</button>
+    <button class="open-btn" onclick="generateAIAnswer()" style="width: 100%;">AI سے پوچھیں</button>
     
-    <!-- یہ وہ جگہ ہے جہاں جواب ظاہر ہوگا -->
-    <div id="aiResponse" style="margin-top: 20px; padding: 15px; background: #0a0a0f; border: 1px solid #ffcc00; border-radius: 10px; min-height: 100px; color: #fff;">
-        جواب یہاں ظاہر ہوگا...
+    <div id="aiResponse" style="margin-top: 20px; padding: 15px; background: #0a0a0f; border: 1px solid #ffcc00; border-radius: 10px; min-height: 50px; color: #fff;">
+        جواب یہاں آئے گا...
     </div>
 </div>
+
+<script>
+function generateAIAnswer() {
+    let task = document.getElementById("taskType").value;
+    let topic = document.getElementById("userTopic").value;
+    let display = document.getElementById("aiResponse");
+
+    if (topic === "") {
+        display.innerHTML = "براہ کرم کچھ لکھیں!";
+        return;
+    }
+
+    let responses = {
+        upwork: "Upwork Proposal for " + topic + ": Hi Client, I am expert in " + topic + ". Let's work together!",
+        fiverr: "Fiverr Gig for " + topic + ": Get professional " + topic + " services today!"
+    };
+
+    let answer = responses[task];
+    display.innerHTML = answer + "<br><br><button onclick=\"alert('کاپی ہو گیا')\">کاپی کریں</button>";
+}
+</script>
+
 
     
 <script>
