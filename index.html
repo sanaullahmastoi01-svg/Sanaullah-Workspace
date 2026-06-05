@@ -364,19 +364,23 @@ footer h3 {
     }
 </script>
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<div class="card" style="max-width: 800px; margin: 40px auto; text-align: right; direction: rtl;">
+
+
+   <div class="card" style="max-width: 800px; margin: 40px auto; text-align: right; direction: rtl; background: #1a1a2e; padding: 25px; border-radius: 15px;">
     <h2 style="color: #ffcc00; margin-bottom: 15px;">🤖 سمارٹ فری لانس اسسٹنٹ</h2>
     
-    <select id="taskType" style="width: 100%; padding: 10px; margin: 10px 0; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
-        <option value="upwork">Upwork Proposal</option>
-        <option value="fiverr">Fiverr Gig Description</option>
+    <select id="taskType" style="width: 100%; padding: 12px; margin: 10px 0; background: #111; color: white; border: 1px solid #444; border-radius: 8px;">
+        <option value="upwork">Upwork Proposal (پیشہ ورانہ پروپوزل)</option>
+        <option value="fiverr">Fiverr Gig Description (گگ کی تفصیل)</option>
+        <option value="freelancer">Freelancer.com Bid (بڈنگ کا طریقہ)</option>
+        <option value="linkedin">LinkedIn Connection (نیٹ ورکنگ میسج)</option>
     </select>
 
-    <input type="text" id="userTopic" placeholder="کام کا نام لکھیں" style="width: 100%; padding: 10px; margin: 10px 0; background: #111; color: white; border: 1px solid #333; border-radius: 8px;">
+    <input type="text" id="userTopic" placeholder="کام کا نام لکھیں (مثال: Google Sheets Automation)" style="width: 100%; padding: 12px; margin: 10px 0; background: #111; color: white; border: 1px solid #444; border-radius: 8px;">
     
-    <button class="open-btn" onclick="generateAIAnswer()" style="width: 100%;">AI سے پوچھیں</button>
+    <button class="open-btn" onclick="generateAIAnswer()" style="width: 100%; padding: 12px; cursor: pointer;">جواب تیار کریں</button>
     
-    <div id="aiResponse" style="margin-top: 20px; padding: 15px; background: #0a0a0f; border: 1px solid #ffcc00; border-radius: 10px; min-height: 50px; color: #fff;">
+    <div id="aiResponse" style="margin-top: 20px; padding: 15px; background: #0a0a0f; border: 1px solid #ffcc00; border-radius: 10px; min-height: 100px; color: #fff; line-height: 1.6;">
         جواب یہاں آئے گا...
     </div>
 </div>
@@ -388,21 +392,36 @@ function generateAIAnswer() {
     let display = document.getElementById("aiResponse");
 
     if (topic === "") {
-        display.innerHTML = "براہ کرم کچھ لکھیں!";
+        display.innerHTML = "براہ کرم کوئی کام کا نام لکھیں!";
         return;
     }
 
     let responses = {
-        upwork: "Upwork Proposal for " + topic + ": Hi Client, I am expert in " + topic + ". Let's work together!",
-        fiverr: "Fiverr Gig for " + topic + ": Get professional " + topic + " services today!"
+        upwork: `Hi Client, I have reviewed your project requirements for ${topic}. I am an expert in Google Workspace automation and can deliver this efficiently. I have completed similar projects successfully. Let's discuss your specific needs. Best regards, Sanaullah.`,
+        fiverr: `Are you looking for high-quality ${topic} services? I specialize in automating complex workflows to save your time and increase productivity. Satisfaction guaranteed with fast delivery!`,
+        freelancer: `Hi, I am interested in your project about ${topic}. I can complete this task within your budget and timeline. Please check my profile for similar work. Ready to start immediately!`,
+        linkedin: `Hi, I noticed you are working on ${topic}. I specialize in automation solutions and would love to connect to discuss how we can improve your efficiency. Regards, Sanaullah.`
     };
 
-    let answer = responses[task];
-    display.innerHTML = answer + "<br><br><button onclick=\"alert('کاپی ہو گیا')\">کاپی کریں</button>";
+    let result = responses[task];
+    
+    // یہاں ہم جواب دکھا رہے ہیں اور کاپی بٹن کے لیے 'onclick' صحیح طریقے سے سیٹ کر رہے ہیں
+    display.innerHTML = `
+        <div id="finalText" style="margin-bottom:15px;">${result}</div>
+        <button onclick="copyToClipboard()" style="padding:8px 20px; cursor:pointer; background:#ffcc00; border:none; border-radius:5px; font-weight:bold;">📋 کاپی کریں</button>
+    `;
+}
+
+function copyToClipboard() {
+    let text = document.getElementById("finalText").innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        alert("پوسٹ کاپی ہو گئی! اب آپ اسے کہیں بھی پیسٹ کر سکتے ہیں۔");
+    }).catch(err => {
+        alert("کاپی کرنے میں مسئلہ ہوا: " + err);
+    });
 }
 </script>
-
-
+ 
     
 <script>
     // === گولڈن ریت + چمکتی بلبیں (پس منظر) ===
