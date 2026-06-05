@@ -348,7 +348,121 @@ Freelancing, Writing, Automation اور Productivity Tools
 <div class="icon">💻</div>
 <h3>Code Helper</h3>
 <p>HTML CSS JavaScript مددگار</p>
+
 <button class="open-btn">Open</button>
+
+  <!-- Google Translate --><div class="container"><h2 class="section-title">🌐 زبان تبدیل کریں</h2><div class="card" style="max-width:700px;margin:auto;">
+<div id="google_translate_element"></div>
+</div><br><br>
+
+<h2 class="section-title">🔤 Text Case Converter</h2><div class="card" style="max-width:800px;margin:auto;"><textarea id="textInput"
+placeholder="یہاں اپنا ٹیکسٹ لکھیں..."
+style="width:100%;height:120px;background:#111;color:white;border:1px solid #333;border-radius:10px;padding:15px;">
+</textarea><br><br>
+
+<button class="open-btn" onclick="convertText('upper')">UPPERCASE</button>
+
+<button class="open-btn" onclick="convertText('lower')">lowercase</button>
+
+<button class="open-btn" onclick="convertText('capitalize')">Capitalize</button>
+
+<br><br>
+
+<div id="textResult"></div></div><br><br>
+
+<h2 class="section-title">🤖 Proposal Generator</h2><div class="card" style="max-width:800px;margin:auto;"><input
+type="text"
+id="jobTitle"
+placeholder="مثال: Google Sheets Automation"
+style="width:100%;padding:15px;background:#111;color:white;border:1px solid #333;border-radius:10px;"
+
+«»
+
+<br><br>
+
+<button class="open-btn" onclick="generateProposal()">
+Generate Proposal
+</button><br><br>
+
+<div id="proposalResult"
+style="text-align:right;color:#ddd;">
+</div></div></div><footer style="
+margin-top:60px;
+padding:30px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.08);
+color:#aaa;
+"><h3 style="color:#ffcc00;">
+Sanaullah Workspace
+</h3><p>
+AI Powered Digital Platform
+</p><p style="margin-top:10px;">
+© 2026 All Rights Reserved
+</p></footer><script>
+
+function convertText(type){
+
+let text=document.getElementById("textInput").value;
+let result="";
+
+if(type==="upper"){
+result=text.toUpperCase();
+}
+
+if(type==="lower"){
+result=text.toLowerCase();
+}
+
+if(type==="capitalize"){
+result=text.toLowerCase().replace(/(^|\s)\S/g,function(t){
+return t.toUpperCase();
+});
+}
+
+document.getElementById("textResult").innerHTML=result;
+
+}
+
+function generateProposal(){
+
+let job=document.getElementById("jobTitle").value;
+
+if(job===""){
+document.getElementById("proposalResult").innerHTML=
+"براہ کرم جاب کا نام لکھیں";
+return;
+}
+
+document.getElementById("proposalResult").innerHTML=`
+
+Hello,
+
+I am an experienced professional with strong expertise in ${job}.
+
+I can deliver high-quality work with attention to detail and within your deadline.
+
+I would love to discuss your project and help you achieve your goals.
+
+Looking forward to working with you.
+
+Best Regards,
+Sanaullah
+
+`;
+
+}
+
+function googleTranslateElementInit() {
+new google.translate.TranslateElement(
+{
+pageLanguage:'ur',
+autoDisplay:false
+},
+'google_translate_element'
+);
+}
+
+</script><script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </div></div></div>
 </body>
 </html>
